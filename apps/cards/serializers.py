@@ -1,10 +1,20 @@
+#Rest
 from rest_framework import serializers
-
-from apps.cards.models import Manga
-
-class MangaSerializers(serializers.ModelSerializer):
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import CreateModelMixin, DestroyModelMixin
+#My imports
+from .models import Card,CardComment
+#CardSerializer
+class CardSerializers(serializers.ModelSerializer):
     class Meta:
-        model = Manga
+        model = Card
         fields = ('id', 'title', 'type', 
-                  'years', 'genre','descriptions'
+                  'years', 'genres','descriptions'
                   )
+
+#CommentSerializer
+class CardCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CardComment
+        fields = "__all__"
+

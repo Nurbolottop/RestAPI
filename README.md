@@ -38,19 +38,19 @@ apicard
 ** - Получить все карты**```
 
 ```
-api/card/<int:pk>/ 
+apicard<int:pk> 
 **- Получить детальную информацию о карте**```
 
 ```
-api/card/?genres=<str:genre>
+apicard?genres=<str:genre>
 ** - Получить список карт по жанру**```
 
 ```
-api/card/search/?search=<str:search_query>```
+apicardsearch?search=<str:search_query>```
  ** - Поиск  карт, соответствующих запросу**
 
 
 ####**1.Пользователи**
 ```
-api/users/ ```
+apiusers ```
  ** - Получить список всех пользователей**

@@ -1,55 +1,18 @@
-# Техническое задание на позицию Intern Backend Developer
+<link rel="stylesheet" href="editormd/css/editormd.css" />
+<div id="test-editor">
+    <textarea style="display:none;">### Editor.md
 
-## Mango Read
-
-####**Функциональность**
-
-######- Регистрация и аутентификация пользователей
-######- Фильтрация карточек по жанрам
-######- Пагинация карточек с отображением 12 карточек на странице
-######- Поиск карточек по названию
-######- Возможность оставить рецензию на карточку
-
-####**Требования к установке**
-######- Python 3.6 или выше
-######- Django 3.0 или выше
-######- Django REST Framework 3.0 или выше
-######- Другие зависимости указаны в файле requirements.txt
-
-####**Инструкции по установке и запуску**
-######- Клонируйте репозиторий на свой компьютер
-######- Установите необходимые зависимости: pip install -r requirements.txt
-######- Проведите миграции: python manage.py migrate
-######- Создайте администратора: python manage.py createsuperuser
-######- Запустите сервер: python manage.py runserver
-######- Откройте в браузере страницу http://localhost:8000/
-
-####**Используемые технологии**
-###### - Django
-###### - Python
-###### - PostgreSQL (или другая база данных)
-###### - Django REST Framework
-
-####**1. Карты**
-
-```python
-api/card/
-``` **- Получить все карты**
-
-```python
-api/card/<int:pk>/ 
-```**- Получить детальную информацию о карте**
-
-```python
-api/card/?genres=<str:genre>
-``` **- Получить список карт по жанру**
-
-```python
-api/card/search/?search=<str:search_query>
-```** - Поиск  карт, соответствующих запросу**
-
-
-####**1.Пользователи**
-```python
-api/users/ 
-```**- Получить список всех пользователей**
+**Editor.md**: The open source embeddable online markdown editor, based on CodeMirror & jQuery & Marked.
+    </textarea>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="editormd/editormd.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var editor = editormd("test-editor", {
+            // width  : "100%",
+            // height : "100%",
+            path   : "editormd/lib/"
+        });
+    });
+</script>

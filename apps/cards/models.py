@@ -34,11 +34,11 @@ class Card(models.Model):
 class CardComment(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE,
-        related_name="post_comment_user"
+        related_name="user_comment"
     )
     card = models.ForeignKey(
         Card, on_delete=models.CASCADE,
-        related_name="post_comments",
+        related_name="card_comments",
         verbose_name="Пост"
     )
     comment = models.CharField(

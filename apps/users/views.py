@@ -9,13 +9,9 @@ from .serializers import UserSerializer,UserRegisterSerializer
 from .models import User
 from .serializers import UserSerializer,UserRegisterSerializer
 
-#UsersAPI
-class UsersAPI(ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
 # REGISTER
-class UsersAPIViewSet(GenericViewSet, ListModelMixin, 
+class UsersAPIRegisterSet(GenericViewSet, ListModelMixin, 
                         RetrieveModelMixin, CreateModelMixin, 
                         UpdateModelMixin, DestroyModelMixin):
     queryset = User.objects.all()

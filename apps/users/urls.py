@@ -6,13 +6,12 @@ from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from rest_framework.routers import DefaultRouter
 
 #My imports
-from .views import UsersAPIViewSet,UsersAPI
+from .views import UsersAPIRegisterSet
 
 router = DefaultRouter()
-router.register(prefix='api/register/', viewset=UsersAPIViewSet)
+router.register(prefix='users', viewset=UsersAPIRegisterSet)
 
 urlpatterns = [
-    path('api/users/', UsersAPI.as_view(), name= "api_user"),
     path('api/login/', TokenObtainPairView.as_view(), name="api_login"),
     path("api/refresh/", TokenRefreshView.as_view(), name="api_refresh")
 ]

@@ -5,6 +5,7 @@ from rest_framework.viewsets import GenericViewSet
 
 # from rest_framework.permissions import IsAuthenticated
 from rest_framework import mixins
+from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework import  pagination
 from rest_framework.response import Response
@@ -49,9 +50,7 @@ class CardSearchAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 #CardCommentAPI
-class CommentAPIViewSet(GenericViewSet, 
-                        mixins.CreateModelMixin,
-                        mixins.DestroyModelMixin):
+class CommentAPIViewSet(generics.CreateAPIView):
     queryset = CardComment.objects.all()
     serializer_class = CardCommentSerializer
     # permission_classes = (IsAuthenticated, )

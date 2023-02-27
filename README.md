@@ -61,7 +61,7 @@
 ```cards/search/?search=<str:search_query>/```
 **- Поиск  карт, соответствующих запросу**
 
-```comment/``` 
+```cards/comment/``` 
 **- Оставить коментарий**
 
 

@@ -6,10 +6,11 @@ from apps.cards.views import CardAPI,CardSearchAPIView,CommentAPIViewSet
 
 router = DefaultRouter()
 router.register(prefix="cards", viewset= CardAPI, basename="cards")
-router.register(prefix='comment', viewset=CommentAPIViewSet, basename="comment")
 
 urlpatterns = [
-    path('cards/search/', CardSearchAPIView.as_view(), name='search')
+    path('cards/search/', CardSearchAPIView.as_view(), name='search'),
+    path('cards/comment/', CommentAPIViewSet.as_view(), name='comment'),
+    
     
 ]
 urlpatterns += router.urls

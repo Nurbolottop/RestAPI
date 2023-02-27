@@ -82,6 +82,6 @@
 
 #### **Авторы**
 
-**Academy Geeks - Идея и документация**
+### **Academy Geeks** - Идея и документация
 
-**Erkinbaew Nurbolot - Реализация**
+### **Erkinbaew Nurbolot** - Реализация

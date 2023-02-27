@@ -1,10 +1,12 @@
 #rest
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet
+from rest_framework.viewsets import GenericViewSet
+
 # from rest_framework.permissions import IsAuthenticated
-from rest_framework.mixins import CreateModelMixin, DestroyModelMixin
-from rest_framework import  pagination
+from rest_framework import mixins
 from rest_framework.views import APIView
+from rest_framework import  pagination
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -13,12 +15,17 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 #my imports
 from .models import Card,CardComment
-from .serializers import CardSerializers,CardCommentSerializer
+from .serializers import CardSerializers,CardCommentSerializer,CardDetailSerializers
 from .service import CardFilter
 
 
 #CardAPI
-class CardAPI(ListCreateAPIView):
+class CardAPI(GenericViewSet,
+                     mixins.ListModelMixin,
+                     mixins.CreateModelMixin,
+                     mixins.RetrieveModelMixin,
+                     mixins.UpdateModelMixin,
+                     mixins.DestroyModelMixin):
     class CardPagination(pagination.PageNumberPagination):
         page_size = 12
         
@@ -27,13 +34,13 @@ class CardAPI(ListCreateAPIView):
     filter_backends = (DjangoFilterBackend,)
     filterset_class = CardFilter
     pagination_class = CardPagination
-
-#CardDetailAPI
-class CardDetailAPI(RetrieveUpdateDestroyAPIView):
-    queryset = Card.objects.all()
-    serializer_class = CardSerializers
     
-#CardSearchAPI
+    def get_serializer_class(self):
+        if self.action in ('retrieve', ):
+            return CardDetailSerializers
+        return CardSerializers
+    
+    #Search
 class CardSearchAPIView(APIView):
     def get(self, request, format=None):
         search_query = request.GET.get('search', '')
@@ -42,8 +49,9 @@ class CardSearchAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 #CardCommentAPI
-class CommentAPIViewSet(GenericViewSet, CreateModelMixin,
-                            DestroyModelMixin):
+class CommentAPIViewSet(GenericViewSet, 
+                        mixins.CreateModelMixin,
+                        mixins.DestroyModelMixin):
     queryset = CardComment.objects.all()
     serializer_class = CardCommentSerializer
     # permission_classes = (IsAuthenticated, )

@@ -2,6 +2,10 @@ from django.db import models
 from apps.users.models import User
 #CardModel
 class Card(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        related_name="user_posts"
+    )
     title = models.CharField(
         max_length=255,
         verbose_name="Название"
